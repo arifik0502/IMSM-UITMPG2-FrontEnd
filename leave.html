@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Requests — Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="app-nav"></div>
+
+<div class="page-container">
+    <h3 class="mb-3">Leave Requests</h3>
+    <div id="alert-box"></div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">New leave request</h5>
+            <form id="leave-form" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">Type</label>
+                    <select class="form-select" id="type" required>
+                        <option value="annual">Annual</option>
+                        <option value="sick">Sick</option>
+                        <option value="unpaid">Unpaid</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Start date</label>
+                    <input type="date" class="form-control" id="start_date" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">End date</label>
+                    <input type="date" class="form-control" id="end_date" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Reason (optional)</label>
+                    <input type="text" class="form-control" id="reason" maxlength="1000">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body p-0">
+            <table class="table mb-0">
+                <thead>
+                <tr><th>Type</th><th>Dates</th><th>Days</th><th>Reason</th><th>Status</th></tr>
+                </thead>
+                <tbody id="leave-body">
+                <tr><td colspan="5" class="text-center text-muted py-4">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/leave.js"></script>
+</body>
+</html>

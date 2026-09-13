@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Equipment — Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="app-nav"></div>
+
+<div class="page-container">
+    <h3 class="mb-3">Borrow Equipment</h3>
+    <div id="alert-box"></div>
+
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Availability</h5>
+                    <div id="equipment-list">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">New booking</h5>
+                    <form id="borrow-form" class="row g-3">
+                        <div id="guest-fields" class="col-md-6 d-none">
+                            <label class="form-label">Your name</label>
+                            <input type="text" class="form-control" id="guest_name" maxlength="255">
+                        </div>
+                        <div id="guest-fields-2" class="col-md-6 d-none">
+                            <label class="form-label">Your email</label>
+                            <input type="email" class="form-control" id="guest_email" maxlength="255">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Equipment</label>
+                            <select class="form-select" id="equipment_id" required></select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Borrow date</label>
+                            <input type="date" class="form-control" id="borrow_date" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Return date</label>
+                            <input type="date" class="form-control" id="return_date" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Reason (optional)</label>
+                            <input type="text" class="form-control" id="reason" maxlength="1000">
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">Submit booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4" id="history-card" style="display:none;">
+                <div class="card-body p-0">
+                    <h5 class="card-title p-3 pb-0">My borrow history</h5>
+                    <table class="table mb-0">
+                        <thead><tr><th>Equipment</th><th>Dates</th><th>Status</th><th>Returned</th><th></th></tr></thead>
+                        <tbody id="history-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/borrow.js"></script>
+</body>
+</html>

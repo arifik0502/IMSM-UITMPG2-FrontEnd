@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Leave Application — Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="app-nav"></div>
+
+<div class="page-container" style="max-width: 560px;">
+    <h3 class="mb-3">Guest Leave Application</h3>
+    <p class="text-muted">No account needed — just fill in your details below.</p>
+    <div id="alert-box"></div>
+
+    <div class="card">
+        <div class="card-body">
+            <form id="guest-leave-form" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Your name</label>
+                    <input type="text" class="form-control" id="guest_name" required maxlength="255">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Your email</label>
+                    <input type="email" class="form-control" id="guest_email" required maxlength="255">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Type</label>
+                    <select class="form-select" id="type" required>
+                        <option value="annual">Annual</option>
+                        <option value="sick">Sick</option>
+                        <option value="unpaid">Unpaid</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Start date</label>
+                    <input type="date" class="form-control" id="start_date" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">End date</label>
+                    <input type="date" class="form-control" id="end_date" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Reason (optional)</label>
+                    <textarea class="form-control" id="reason" maxlength="1000" rows="3"></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/nav.js"></script>
+<script>
+$(function () {
+    Nav.render('guest-leave');
+
+    $('#guest-leave-form').on('submit', function (e) {
+        e.preventDefault();
+        clearAlert('#alert-box');
+        $('#submit-btn').prop('disabled', true).text('Submitting...');
+
+        Api.post('/guest/leave', {
+            guest_name: $('#guest_name').val(),
+            guest_email: $('#guest_email').val(),
+            type: $('#type').val(),
+            start_date: $('#start_date').val(),
+            end_date: $('#end_date').val(),
+            reason: $('#reason').val() || null,
+        }).done((res) => {
+            showAlert('#alert-box', res.message, 'success');
+            $('#guest-leave-form')[0].reset();
+        }).fail((err) => {
+            showAlert('#alert-box', err);
+        }).always(() => {
+            $('#submit-btn').prop('disabled', false).text('Submit application');
+        });
+    });
+});
+</script>
+</body>
+</html>

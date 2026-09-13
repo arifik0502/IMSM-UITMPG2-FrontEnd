@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="app-nav"></div>
+
+<div class="page-container" style="max-width: 420px;">
+    <div class="card mt-5">
+        <div class="card-body p-4">
+            <h4 class="card-title mb-3">Create an employee account</h4>
+            <div id="alert-box"></div>
+            <form id="register-form">
+                <div class="mb-3">
+                    <label class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required minlength="8">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" id="password_confirmation" required minlength="8">
+                </div>
+                <button type="submit" class="btn btn-primary w-100" id="register-btn">Register</button>
+            </form>
+            <p class="text-center mt-3 mb-0">
+                Already have an account? <a href="index.html">Log in</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/nav.js"></script>
+<script>
+$(function () {
+    if (Api.isLoggedIn()) {
+        window.location.href = Api.isAdmin() ? 'admin/dashboard.html' : 'dashboard.html';
+        return;
+    }
+    Nav.render();
+
+    $('#register-form').on('submit', function (e) {
+        e.preventDefault();
+        clearAlert('#alert-box');
+        $('#register-btn').prop('disabled', true).text('Registering...');
+
+        Api.post('/auth/register', {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+            password_confirmation: $('#password_confirmation').val(),
+        }).done((res) => {
+            Api.setToken(res.token);
+            Api.setCurrentUser(res.user);
+            window.location.href = 'dashboard.html';
+        }).fail((err) => {
+            showAlert('#alert-box', err);
+            $('#register-btn').prop('disabled', false).text('Register');
+        });
+    });
+});
+</script>
+</body>
+</html>

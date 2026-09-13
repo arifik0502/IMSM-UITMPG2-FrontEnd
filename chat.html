@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat — Attendance System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="app-nav"></div>
+
+<div class="page-container">
+    <h3 class="mb-3">Chat</h3>
+    <div id="alert-box"></div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div id="contact-list" class="list-group list-group-flush">Loading...</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 id="thread-title" class="card-title text-muted">Select a contact</h5>
+                    <div class="chat-thread mb-3" id="thread-body"></div>
+                    <form id="message-form" class="d-flex gap-2 d-none">
+                        <input type="text" class="form-control" id="message-input" maxlength="2000" placeholder="Type a message..." autocomplete="off">
+                        <button class="btn btn-primary" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/chat.js"></script>
+</body>
+</html>
