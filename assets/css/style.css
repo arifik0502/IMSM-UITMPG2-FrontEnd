@@ -2,11 +2,19 @@
     --uitm-maroon: #7A0026;
     --uitm-maroon-dark: #5c001c;
     --uitm-gold: #C9A227;
+    --uitm-purple: #3B0A45;
 }
 
 body {
-    background: #f0f1f5;
+    background: linear-gradient(135deg, var(--uitm-purple) 0%, var(--uitm-maroon) 55%, var(--uitm-gold) 100%);
+    background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.page-container .card,
+.card {
+    background: #fff;
 }
 
 /* ---- Navbar ---- */
