@@ -1,18 +1,73 @@
-body {
-    background: #f5f6f8;
+:root {
+    --uitm-maroon: #7A0026;
+    --uitm-maroon-dark: #5c001c;
+    --uitm-gold: #C9A227;
 }
 
+body {
+    background: #f0f1f5;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+/* ---- Navbar ---- */
+.navbar.bg-dark {
+    background: linear-gradient(90deg, var(--uitm-maroon), var(--uitm-maroon-dark)) !important;
+    border-bottom: 3px solid var(--uitm-gold);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-link.active {
+    color: var(--uitm-gold) !important;
+    border-bottom: 2px solid var(--uitm-gold);
+}
+
+/* ---- Layout ---- */
 .page-container {
     max-width: 960px;
     margin: 0 auto;
     padding: 1.5rem 1rem 3rem;
 }
 
+/* ---- Cards ---- */
 .card {
     border: none;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid var(--uitm-maroon);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
+.card-title {
+    color: var(--uitm-maroon);
+    font-weight: 700;
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+    background-color: var(--uitm-maroon);
+    border-color: var(--uitm-maroon);
+}
+.btn-primary:hover {
+    background-color: var(--uitm-maroon-dark);
+    border-color: var(--uitm-maroon-dark);
+}
+.btn-outline-primary {
+    color: var(--uitm-maroon);
+    border-color: var(--uitm-maroon);
+}
+.btn-outline-primary:hover {
+    background-color: var(--uitm-maroon);
+    border-color: var(--uitm-maroon);
+}
+
+/* ---- Badges ---- */
+.badge.bg-primary { background-color: var(--uitm-maroon) !important; }
+.badge.bg-warning { background-color: var(--uitm-gold) !important; color: #3a2e00 !important; }
+
+/* ---- Camera / chat (unchanged) ---- */
 #camera-video, #camera-preview {
     width: 100%;
     max-height: 360px;
@@ -40,7 +95,7 @@ body {
 }
 
 .chat-bubble.mine {
-    background: #0d6efd;
+    background: var(--uitm-maroon);
     color: #fff;
     float: right;
 }
@@ -52,9 +107,22 @@ body {
 }
 
 .contact-list-item.active {
-    background: #e7f1ff;
+    background: #f4e6cb;
 }
 
 .equipment-card.unavailable {
     opacity: 0.6;
+}
+
+/* ---- Login/register card page ---- */
+.page-container .card.mt-5 {
+    border-top: none;
+}
+.page-container .card.mt-5 .card-body::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--uitm-maroon), var(--uitm-gold));
+    margin: -1.5rem -1.5rem 1.5rem;
+    border-radius: 10px 10px 0 0;
 }
